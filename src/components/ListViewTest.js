@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionList, StyleSheet, Text, View } from 'react-native';
+import {Button, SectionList, StyleSheet, Text, View} from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -22,9 +22,13 @@ const styles = StyleSheet.create({
     },
 })
 
-const ListViewTest = () => {
+const ListViewTest = ({navigation}) => {
     return (
         <View style={styles.container}>
+            <Button
+                title="Go to Profile"
+                onPress={() => navigation.navigate('Profile')}
+            />
             <SectionList
                 sections={[
                     {title: 'A', data: ['Jackson', 'James', 'Jillian', 'Jimmy', 'Joel', 'John', 'Julie']},

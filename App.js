@@ -22,15 +22,47 @@ import ScrollViewTest from "./src/components/ScrollViewTest";
 import ListViewTest from "./src/components/ListViewTest";
 import FetchMovies from "./src/components/FetchMovies";
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+const Tab = createBottomTabNavigator();
+
+const Stack = createNativeStackNavigator();
+
+
+function Home() {
+  return (
+      <Tab.Navigator>
+        <Tab.Screen name="Feed" component={TextFieldTest} />
+        <Tab.Screen name="Messages" component={ListViewTest} />
+      </Tab.Navigator>
+  );
+}
+
 const App = () => {
   const [textValue, setTextValue] = useState( '');
   return (
-      <ScrollView>
-        {/*<TextFieldTest />*/}
-        {/*<ScrollViewTest />*/}
-        {/*<ListViewTest />*/}
-        <FetchMovies />
-      </ScrollView>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{ title: 'Home' }}
+          />
+          <Stack.Screen
+              name="Profile"
+              component={FetchMovies}
+              options={{ title: 'Profile' }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+      // <ScrollView>
+      //   {/*<TextFieldTest />*/}
+      //   {/*<ScrollViewTest />*/}
+      //   {/*<ListViewTest />*/}
+      //   <FetchMovies />
+      // </ScrollView>
   );
 };
 
